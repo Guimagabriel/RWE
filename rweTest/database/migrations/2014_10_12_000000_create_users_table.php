@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('about')->nullable();
             $table->string('image_path')->nullable();
             $table->json('social_network')->nullable();
+            $table->timestamps();
         });
     }
 

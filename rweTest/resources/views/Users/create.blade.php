@@ -17,12 +17,14 @@
             <label for="name" class="col-sm-2 m-1 col-form-label">*Nome:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="name" id="name" style="width: 35em;" placeholder="Digite seu nome">
+                <span class="error-msg" style="display: none" id="name-error">Por favor, insira um nome válido.</span>
             </div>
         </div>
         <div class="row mb-3 m-3">
             <label for="email" class="col-sm-2 m-1 col-form-label">*Email:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="email" id="email" style="width: 35em;" placeholder="Digite seu email">
+                <span class="error-msg" style="display: none" id="email-error">Por favor, insira um endereço de e-mail válido.</span>
             </div>
         </div>
         <div class="row mb-3 m-3">
@@ -35,6 +37,7 @@
                   </svg>
                 </span>
                     <input type="text" class="form-control" name="social_network[facebook]" id="facebook" placeholder="Facebook">
+                    <span class="error-msg" style="display: none" id="facebook-error">Por favor, insira um link de Facebook válido.</span>
                 </div>
                 <div class="input-group" style="width: 35em; margin-top: 5px;">
                 <span class="input-group-text" id="basic-addon1">
@@ -43,6 +46,7 @@
                   </svg>
                 </span>
                     <input type="text" class="form-control" name="social_network[twitter]" id="twitter" placeholder="Twitter">
+                    <span class="error-msg" style="display: none" id="twitter-error">Por favor, insira um link de Twitter válido.</span>
                 </div>
                 <div class="input-group" style="width: 35em; margin-top: 5px;">
                 <span class="input-group-text" id="basic-addon1">
@@ -51,6 +55,7 @@
                   </svg>
                 </span>
                     <input type="text" class="form-control" name="social_network[instagram]" id="instagram" placeholder="Instagram">
+                    <span class="error-msg" style="display: none" id="instagram-error">Por favor, insira um link de Instagram válido.</span>
                 </div>
                 <div class="input-group" style="width: 35em; margin-top: 5px;">
                 <span class="input-group-text" id="basic-addon1">
@@ -59,6 +64,7 @@
                   </svg>
                 </span>
                     <input type="text" class="form-control" name="social_network[linkedin]" id="linkedin" placeholder="Linkedin">
+                    <span class="error-msg" style="display: none" id="linkedin-error">Por favor, insira um link de Linkedin válido.</span>
                 </div>
             </div>
         </div>
@@ -76,6 +82,91 @@
         </div>
 
         <button class="btn btn-primary row mb-4 m-4" style="width: 200px" type="submit">Cadastrar</button>
+        <script>
+            let emailField = document.querySelector("#email");
+            let nameField = document.querySelector("#name");
+            let facebookField = document.querySelector("#facebook");
+            let instagramField = document.querySelector("#instagram");
+            let twitterField = document.querySelector("#twitter");
+            let linkedinField = document.querySelector("#linkedin");
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const facebookUrlRegex = /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9_\.]+\/?$/;
+            const twitterUrlRegex = /^(https?:\/\/)?(www\.)?twitter\.com\/[a-zA-Z0-9_]+\/?$/;
+            const instagramUrlRegex = /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
+            const linkedinUrlRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\/?$/;
+
+            emailField.addEventListener('change',(element) => {
+                let isValid = emailRegex.test(element.target.value);
+                let spanField = document.querySelector("#email-error");
+                if (isValid === true) {
+                    spanField.style.display = 'none';
+                    emailField.classList.remove('is-invalid');
+                } else {
+                    spanField.style.display = 'block';
+                    emailField.classList.add('is-invalid');
+                }
+            });
+
+            nameField.addEventListener('change', (element) => {
+               let spanField = document.querySelector("#name-error")
+               if (element.target.value.length > 3 || element.target.value == '') {
+                   spanField.style.display = 'none';
+                   nameField.classList.remove('is-invalid');
+               } else {
+                   spanField.style.display = 'block';
+                   nameField.classList.add('is-invalid');
+               }
+            });
+
+            facebookField.addEventListener('change',(element) => {
+                let isValid = facebookUrlRegex.test(element.target.value);
+                let spanField = document.querySelector("#facebook-error");
+                if (isValid === true || element.target.value == '') {
+                    spanField.style.display = 'none';
+                    facebookField.classList.remove('is-invalid');
+                } else {
+                    spanField.style.display = 'block';
+                    facebookField.classList.add('is-invalid');
+                }
+            });
+
+            instagramField.addEventListener('change',(element) => {
+                let isValid = instagramUrlRegex.test(element.target.value);
+                let spanField = document.querySelector("#instagram-error");
+                if (isValid === true || element.target.value == '') {
+                    spanField.style.display = 'none';
+                    instagramField.classList.remove('is-invalid');
+                } else {
+                    spanField.style.display = 'block';
+                    instagramField.classList.add('is-invalid');
+                }
+            });
+
+            twitterField.addEventListener('change',(element) => {
+                let isValid = twitterUrlRegex.test(element.target.value);
+                let spanField = document.querySelector("#twitter-error");
+                if (isValid === true || element.target.value == '') {
+                    spanField.style.display = 'none';
+                    twitterField.classList.remove('is-invalid');
+                } else {
+                    spanField.style.display = 'block';
+                    twitterField.classList.add('is-invalid');
+                }
+            });
+
+            linkedinField.addEventListener('change',(element) => {
+                let isValid = linkedinUrlRegex.test(element.target.value);
+                let spanField = document.querySelector("#linkedin-error");
+                if (isValid === true || element.target.value == '') {
+                    spanField.style.display = 'none';
+                    linkedinField.classList.remove('is-invalid');
+                } else {
+                    spanField.style.display = 'block';
+                    linkedinField.classList.add('is-invalid');
+                }
+            });
+        </script>
     </form>
 
 @endsection
