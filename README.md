@@ -11,6 +11,31 @@
     <ul>
         <li>PHP: ^8.2</li>
         <li>MySQL: ^8.1</li>
+        <li>Composer: 2</li>
     </ul>
 </p>
 <h2>Subindo o ambiente</h2>
+<p>Inicialmente devemos instalar as dependências do projeto</p>
+
+```shell
+$ composer install 
+```
+<p>Após a instalação das dependências, configure o projeto no arquivo .env com as credenciais do banco de dados:</p>
+
+```txt
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+<p>Após a configuração do banco execute o comando:</p>
+
+```shell
+$ php artisan serve
+```
+
+<p>Ao terminar a execução a aplicação estará pronta.</p>
+<img src="rweTest/images/test.png"/>
