@@ -81,7 +81,7 @@
             <input class="form-control" type="file" name="image" id="formFile">
         </div>
 
-        <button class="btn btn-primary row mb-4 m-4" style="width: 200px" type="submit">Cadastrar</button>
+        <button class="btn btn-primary row mb-4 m-4" id="submit" style="width: 200px" disabled type="submit">Cadastrar</button>
         <script src='{{ asset('assets/js/form-validation.js') }}'></script>
     </form>
 

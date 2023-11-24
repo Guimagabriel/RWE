@@ -1,6 +1,5 @@
 @extends('Users.home')
 @section('content')
-
     <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="_method" value="PUT">
@@ -83,7 +82,7 @@
             <input class="form-control" type="file" name="image" id="formFile">
         </div>
 
-        <button class="btn btn-primary row mb-4 m-4" style="width: 200px" type="submit">Editar</button>
+        <button class="btn btn-primary row mb-4 m-4" style="width: 200px" id="submit" type="submit">Editar</button>
         <script src='{{ asset('assets/js/form-validation.js') }}'></script>
     </form>
 

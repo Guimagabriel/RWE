@@ -21,12 +21,14 @@
                                 <td class="title">
 
                                     <div class="thumb">
-                                        <img class="img-fluid" src="{{ asset($user->image_path) }}" alt="Imagem do usuário">
+                                        @if(!empty($user->image_path)) <img class="img-fluid" src="{{ asset($user->image_path) }}" alt="Imagem do usuário">
+                                            @else <img class="img-fluid" src="{{ asset('/assets/usersImages/default.png') }}" alt="Imagem do usuário">
+                                        @endif
                                     </div>
                                     <div class="candidate-list-details">
                                         <div class="candidate-list-info">
                                             <div class="candidate-list-title">
-                                                <h5 class="mb-0"><a href="#">{{$user->name}}</a></h5>
+                                                <h5 class="mb-0"><a href="{{ route('users.show', ['user' => $user->id]) }}">{{$user->name}}</a></h5>
                                             </div>
                                             <div class="candidate-list-option">
                                                 <ul class="list-unstyled">
@@ -49,8 +51,8 @@
                                 </td>
                                 <td>
                                     <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                                        <li><a href="#" class="text-primary" data-toggle="tooltip" title="" data-original-title="view"><i class="far fa-eye"></i></a></li>
-                                        <li><a href="#" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+                                        <li><a href="{{ route('users.show', ['user' => $user->id]) }}" class="text-primary" data-toggle="tooltip" title="" data-original-title="view"><i class="far fa-eye"></i></a></li>
+                                        <li><a href="{{ route('users.edit', ['user' => $user->id]) }}" class="text-info" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
                                     </ul>
                                 </td>
                             </tr>

@@ -4,12 +4,25 @@ let facebookField = document.querySelector("#facebook");
 let instagramField = document.querySelector("#instagram");
 let twitterField = document.querySelector("#twitter");
 let linkedinField = document.querySelector("#linkedin");
+let buttonField = document.querySelector("#submit");
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const facebookUrlRegex = /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9_\.]+\/?$/;
 const twitterUrlRegex = /^(https?:\/\/)?(www\.)?twitter\.com\/[a-zA-Z0-9_]+\/?$/;
 const instagramUrlRegex = /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
 const linkedinUrlRegex = /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\/?$/;
+
+function enableSubmit()
+{
+    let isInputWithError = nameField.classList.contains('is-invalid') || emailField.classList.contains('is-invalid');
+    let isInputEmpty = nameField.value == '' || emailField.value == '';
+
+    if(!isInputWithError && !isInputEmpty) {
+           buttonField.disabled = false
+    } else {
+        buttonField.disabled = true;
+    }
+}
 
 emailField.addEventListener('change', (element) => {
     let isValid = emailRegex.test(element.target.value);
@@ -21,6 +34,7 @@ emailField.addEventListener('change', (element) => {
         spanField.style.display = 'block';
         emailField.classList.add('is-invalid');
     }
+    enableSubmit();
 });
 
 nameField.addEventListener('change', (element) => {
@@ -32,6 +46,7 @@ nameField.addEventListener('change', (element) => {
         spanField.style.display = 'block';
         nameField.classList.add('is-invalid');
     }
+    enableSubmit();
 });
 
 facebookField.addEventListener('change', (element) => {
@@ -81,3 +96,4 @@ linkedinField.addEventListener('change', (element) => {
         linkedinField.classList.add('is-invalid');
     }
 });
+
