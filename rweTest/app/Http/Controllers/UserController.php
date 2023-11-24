@@ -37,7 +37,22 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $randomFileName = $file->hashName();
 
+            $img = Image::make($file);
+            $img->resize(800, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->crop(400, 400);
+
+            $img->save(public_path('usersImages/').$randomFileName, 90);
+
+            $user->image_path = 'usersImages/' . $randomFileName;
+        }
+        $user->update($request->all());
+        return redirect()->route('users.show', ['user' => $user])->with('success', 'Perfil atualizado com sucesso!');;
     }
 
     public function store(Request $request)

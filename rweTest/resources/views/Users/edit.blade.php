@@ -2,7 +2,7 @@
 @section('content')
     <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="_method" value="PUT">
+        @method('PUT')
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center fw-bold">
