@@ -18,6 +18,7 @@
 <p>Inicialmente devemos instalar as dependências do projeto</p>
 
 ```shell
+$ apt install php-pdo php-curl php-dom php-xml php-mysql php-gd
 $ composer install 
 ```
 <p>Após a instalação das dependências, configure o projeto no arquivo .env com as credenciais do banco de dados:</p>
@@ -34,8 +35,10 @@ DB_PASSWORD=
 <p>Após a configuração do banco execute o comando:</p>
 
 ```shell
+$ php artisan key:generate
+$ php artisan migrate
 $ php artisan serve
 ```
 
 <p>Ao terminar a execução a aplicação estará pronta.</p>
-<img src="rweTest/images/test.png"/>
+<img src="rweTest/images/Gravando-2023-11-23-004303.gif"/>
